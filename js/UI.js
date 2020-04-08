@@ -44,11 +44,18 @@ class UI {
             // Destructuring
             const { latitude, longitude, calle, regular, premium } = dato;
 
+            // Agregar el Popup
+            const opcionesPopup = L.popup()
+                .setContent(`<p>Calle: ${calle}</p>
+                             <p><b>Regular: $</b>${regular}</p>
+                             <p><b>Premium: $</b>${premium}</p>
+                `)
+
             // Agregar el PIN
             const marker = new L.marker([
                 parseFloat(latitude),
                 parseFloat(longitude)
-            ]);
+            ]).bindPopup(opcionesPopup);
             this.markers.addLayer(marker);
         })
         this.markers.addTo(this.mapa);
